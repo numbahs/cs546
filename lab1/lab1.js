@@ -49,5 +49,17 @@ Pick it up, drink the cup, no more coffee left on the desk!\n'
  * @param  {string} sub
  */
 const occurancesOfSubstring = (full, sub) => {
-    
+    if(typeof(full) !== 'string' || typeof(sub) !== 'string') {
+        throw TypeError("Both arguments should be strings when inputted.");
+    }
+    let expression = new RegExp(`(?=${sub})`, 'g');
+    return (full.match(expression)).length;
+}
+
+module.exports = {
+    sumOfSquares,
+    sayHelloTo,
+    cupsOfCoffee,
+    occurrencesOfSubstring,
+    randomizeSentences
 }
