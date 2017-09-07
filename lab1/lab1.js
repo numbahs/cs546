@@ -76,11 +76,3 @@ const randomizeSentences = (paragraph) => {
 
     return (sentences.reduce((prev, curr) => prev + curr)).slice(1);
 }
-
-module.exports = {
-    sumOfSquares,
-    sayHelloTo,
-    cupsOfCoffee,
-    occurrencesOfSubstring,
-    randomizeSentences
-}
