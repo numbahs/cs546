@@ -88,8 +88,8 @@ Pick it up, drink the cup, no more coffee left on the desk!`;
 
 describe("cupsOfCoffee", () => {
     describe("-> cupsOfCoffee(3.14)", () => {
-        it("Should throw TypeError", () => {
-            assert.throws(() => cupsOfCoffee(3.14), TypeError);
+        it("Should throw Error", () => {
+            assert.throws(() => cupsOfCoffee(3.14), Error);
         });
     });
     describe("-> cupsOfCoffee('foobar')", () => {
@@ -98,8 +98,8 @@ describe("cupsOfCoffee", () => {
         });
     });
     describe("-> cupsOfCoffee(-1)", () => {
-        it("Should throw TypeError", () => {
-            assert.throws(() => cupsOfCoffee(-1), TypeError);
+        it("Should throw Error", () => {
+            assert.throws(() => cupsOfCoffee(-1), Error);
         });
     });
     describe("-> cupsOfCoffee(5)", () => {

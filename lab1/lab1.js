@@ -31,29 +31,36 @@ const sayHelloTo = (...args) => {
 const cupsOfCoffee = (cupCount) => {
     if(typeof(cupCount) !== 'number') {
         throw TypeError(`${cupCount} is not a number!`);
-    } else if(!Number.isSafeInteger(cupCount) || cupCount < 0) {
+    } else if(!(Number.isSafeInteger(cupCount)) || cupCount < 0) {
         throw Error(`${cupCount} is not an acceptable number!`);
     }
     let responseText = '';
     for(let i = cupCount; i > 2; i --) {
-        responseText += `${i} cups of coffe on the desk! ${i} cups of coffee! \n\
-Pick one up, drink the cup, ${i} cup of coffee on the desk!\n`
+        responseText += `${i} cups of coffee on the desk! ${i} cups of coffee! \n\
+Pick one up, drink the cup, ${i - 1} cups of coffee on the desk!\n\n`
     }
     return responseText + '2 cups of coffee on the desk! 2 cups of coffee! \n\
-Pick one up, drink the cup, 1 cup of coffee on the desk!\n' + 
+Pick one up, drink the cup, 1 cup of coffee on the desk!\n\n' + 
 '1 cup of coffee on the desk! 1 cup of coffee! \n\
-Pick it up, drink the cup, no more coffee left on the desk!\n'
+Pick it up, drink the cup, no more coffee left on the desk!'
 }
 /**
  * @param  {string} full
  * @param  {string} sub
  */
-const occurancesOfSubstring = (full, sub) => {
+const occurrencesOfSubstring = (full, sub) => {
     if(typeof(full) !== 'string' || typeof(sub) !== 'string') {
         throw TypeError("Both arguments should be strings when inputted.");
     }
     let expression = new RegExp(`(?=${sub})`, 'g');
-    return (full.match(expression)).length;
+    return (full.match(expression) || []).length;
+}
+
+const randomizeSentences = (paragraph) => {
+    if(typeof(paragraph) !== 'string') {
+        throw TypeError("The input to this function should be a paragraph!");
+    }
+    let expression = new RegExp(`/.+?(?=\.\?\!)`);
 }
 
 module.exports = {
