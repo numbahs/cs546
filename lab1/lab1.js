@@ -60,7 +60,21 @@ const randomizeSentences = (paragraph) => {
     if(typeof(paragraph) !== 'string') {
         throw TypeError("The input to this function should be a paragraph!");
     }
-    let expression = new RegExp(`/.+?(?=\.\?\!)`);
+    let sentences = paragraph.match(/[^\.!?]+[\.!?]/g),
+        sentenceCount = sentences.length,
+        currSentence, 
+        rand;
+    
+    sentences[0] = ` ${sentences[0]}`;
+
+    while(sentenceCount) {
+        rand = Math.floor(Math.random() * sentenceCount--);
+        currSentence = sentences[sentenceCount];
+        sentences[sentenceCount] = sentences[rand];
+        sentences[rand] = currSentence;
+    }
+
+    return (sentences.reduce((prev, curr) => prev + curr)).slice(1);
 }
 
 module.exports = {
