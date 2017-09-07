@@ -25,7 +25,9 @@ const sayHelloTo = (...args) => {
     };
     console.log(responseText[argLen]);
 }
-
+/**
+ * @param  {number} cupCount
+ */
 const cupsOfCoffee = (cupCount) => {
     if(typeof(cupCount) !== 'number') {
         throw TypeError(`${cupCount} is not a number!`);
@@ -41,4 +43,11 @@ Pick one up, drink the cup, ${i} cup of coffee on the desk!\n`
 Pick one up, drink the cup, 1 cup of coffee on the desk!\n' + 
 '1 cup of coffee on the desk! 1 cup of coffee! \n\
 Pick it up, drink the cup, no more coffee left on the desk!\n'
+}
+/**
+ * @param  {string} full
+ * @param  {string} sub
+ */
+const occurancesOfSubstring = (full, sub) => {
+    
 }
