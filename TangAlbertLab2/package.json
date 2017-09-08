@@ -1,0 +1,12 @@
+{
+  "name": "cs-546-lab-2",
+  "version": "1.0.0",
+  "description": "Package for lab 2, printing shapes",
+  "main": "index.js",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Albert Tang",
+  "license": "ISC",
+  "dependencies": {}
+}
