@@ -43,13 +43,3 @@ const rhombus = (lines) => {
     res += `\n${res.split("").reverse().join("")}`;
     console.log(res);
 }
-
-triangle(1);
-triangle(2);
-triangle(3);
-square(2);
-square(3);
-rhombus(2);
-rhombus(4);
-rhombus(6);
-rhombus(40);
