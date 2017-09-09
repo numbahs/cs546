@@ -3,13 +3,14 @@ const triangle = (lines) => {
         throw TypeError("The argument is not in the correct form. The argument \
         must be an integer greater than 0");
     }
-    let currLine = 0;
+    let currLine = 0, res = '';
     while(currLine < lines) {
-        console.log(`${' '.repeat(lines - currLine - 1)}/${
+        res += `${' '.repeat(lines - currLine - 1)}/${
             (currLine !== lines - 1) ? 
-            '  '.repeat(currLine) : '--'.repeat(currLine)}\\`);
+            '  '.repeat(currLine) : '--'.repeat(currLine)}\\\n`;
         currLine++;
     }
+    return res;
 }
 
 const square = (lines) => {
@@ -17,12 +18,13 @@ const square = (lines) => {
         throw TypeError("The argument is not in the correct form. The argument \
         must be an integer that is greater than 1!");
     }
-    let currLine = 1;
+    let currLine = 1, res = '';
     while(currLine <= lines) {
-        console.log(`    |${(currLine === 1 || currLine === lines) ?
-            '-'.repeat(lines) : ' '.repeat(lines)}|`);
+        res += `    |${(currLine === 1 || currLine === lines) ?
+            '-'.repeat(lines) : ' '.repeat(lines)}|\n`;
         currLine++;
    }
+   return res;
 }
 
 const rhombus = (lines) => {
@@ -40,6 +42,5 @@ const rhombus = (lines) => {
             '  '.repeat(currLine)}\\   ${' '.repeat(halfLines - currLine)}`;
         currLine++;
     }
-    res += `\n${res.split("").reverse().join("")}`;
-    console.log(res);
+    return res + `\n${res.split("").reverse().join("")}`;
 }
