@@ -42,5 +42,11 @@ const rhombus = (lines) => {
             '  '.repeat(currLine)}\\   ${' '.repeat(halfLines - currLine)}`;
         currLine++;
     }
-    return res + `\n${res.split("").reverse().join("")}`;
+    return res + `\n${res.split("").reverse().join("")}\n`;
+}
+
+module.exports = {
+    triangle,
+    square,
+    rhombus
 }

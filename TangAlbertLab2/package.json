@@ -4,7 +4,7 @@
   "description": "Package for lab 2, printing shapes",
   "main": "index.js",
   "scripts": {
-    "test": ""
+  "test": ""
   },
   "author": "Albert Tang",
   "license": "ISC",
