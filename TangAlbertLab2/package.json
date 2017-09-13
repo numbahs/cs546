@@ -4,9 +4,9 @@
   "description": "Package for lab 2, printing shapes",
   "main": "index.js",
   "scripts": {
-  "test": ""
+    "start": "node index.js"
   },
   "author": "Albert Tang",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {}
 }
