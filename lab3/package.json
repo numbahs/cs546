@@ -8,5 +8,8 @@
 	},
 	"keywords": [],
 	"author": "Albert Tang",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"bluebird": "^3.5.0"
+	}
 }

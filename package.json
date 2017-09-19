@@ -10,6 +10,8 @@
   "author": "Albert Tang",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
+    "fs-extra": "^4.0.2",
     "shelljs": "^0.7.8"
   }
 }

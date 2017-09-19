@@ -9,8 +9,8 @@ const {
     rhombus
 } = require("./printShape");
 
- for(let i = 1; i < 11; i++) {
-     console.log(triangle(i));
-     console.log(square(i + 1));
-     console.log(rhombus(i * 2));
- }
+for(let i = 1; i < 11; i++) {
+    console.log(triangle(i));
+    console.log(square(i + 1));
+    console.log(rhombus(i * 2));
+}
