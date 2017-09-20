@@ -6,9 +6,12 @@
 
 const {
     getFileAsString,
-    getFileAsJSON
+    getFileAsJSON,
+    saveStringToFile,
+    saveJSONToFile
 } = require("./fileData");
+let path = require('path');
 
-getFileAsString('chapter1.txt')
+getFileAsJSON(path.join(__dirname, 'chapter1.txt'))
 .then(res => console.log(res))
-.catch(err => console.error(err))
+.catch(err => console.error(err));
