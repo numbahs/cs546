@@ -1,3 +1,8 @@
+/**
+ * @param  {string} text the text that must be simplified.
+ * @throws {typeError} if the text inputted is not a string
+ * @return {string} the simplified text.
+ */
 const simplify = (text) => {
     if(typeof(text) !== 'string') {
         throw typeError("Argument must be a string to be simplified!");
@@ -7,6 +12,11 @@ const simplify = (text) => {
         .replace(/[\s]+/g, ' ');
 }
 
+/**
+ * @param  {string} text the text that must be parsed for its metrics.
+ * @throws {typeError} if the text inputted is not a string.
+ * @return {Object} the metrics of the text.
+ */
 const createMetrics = (text) => {
     if(typeof(text) !== 'string') {
         throw typeError("Argument must be a string to be parsed!");
