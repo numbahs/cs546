@@ -1,28 +1,33 @@
-const bluebird = require("bluebird");
-const Promise = bluebird.Promise;
-const fs = bluebird.promisifyAll(require("fs"));
+const fs = require("fs-extra");
 
 async function getFileAsString(path) {
     try {
-        if(typeof path !== 'string') {
+        if(typeof(path) !== 'string') {
             throw `${path} is not a valid path!`;
         }
-        return await fs.readFileAsync(path, "utf-8");
+        return await fs.readFile(path, "utf-8");
     } catch (error) {
         throw error;
     }
 };
 
 async function getFileAsJSON(path) {
-    return JSON.parse(JSON.stringify(await getFileAsString(path)));
+    try {
+        if(typeof(path) !== 'string') {
+            throw `${path} is not a valid path!`;
+        }
+        return JSON.parse(await fs.readFile(path, "utf-8"));
+    } catch (error) {
+        throw error;
+    }
 }
 
 async function saveStringToFile(path, text) {
     try {
-        if(typeof path !== 'string') {
+        if(typeof(path) !== 'string') {
             throw `${path} is not a valid path!`;
         }
-        await fs.writeFileAsync(path, text);
+        await fs.writeFile(path, text);
         return true;
     } catch (error) {
         throw error;
@@ -31,10 +36,10 @@ async function saveStringToFile(path, text) {
 
 async function saveJSONToFile(path, obj) {
     try {
-        if(typeof path !== 'string') {
+        if(typeof(path) !== 'string') {
             throw `${path} is not a valid path!`;
         }
-        await fs.writeFileAsync(path, JSON.stringify(obj));
+        await fs.writeFile(path, JSON.stringify(obj, null, 4));
         return true;
     } catch (error) {
         throw error;
