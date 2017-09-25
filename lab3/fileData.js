@@ -33,9 +33,10 @@ async function getFileAsJSON(path) {
 }
 
 /**
- * @param  {string} path the path to the file
- * @param  {string} text the text that is being saved.
- * @throws if the path is not a string.
+ * @param  {string} path the path to the file.
+ * @param  {string} text that text is being saved.
+ * @throws {TypeError} if the path is not a string.
+ * @throws {TypeError} if the text if not a string.
  * @return {promise} if the function doesn't fail, it returns a promise that
  *                   resolves to true. 
  */
@@ -43,6 +44,9 @@ async function saveStringToFile(path, text) {
     try {
         if(typeof(path) !== 'string') {
             throw `${path} is not a valid path!`;
+        }
+        if(typeof(text) !== 'string') {
+            throw TypeError(`${text} is no a valid object!`);
         }
         await fs.writeFile(path, text);
         return true;
@@ -53,17 +57,21 @@ async function saveStringToFile(path, text) {
 
 /**
  * @param  {string} path the path to the file
- * @param  {string} text the text that is being saved.
- * @throws if the path is not a string.
+ * @param  {string} obj the object that is being saved.
+ * @throws {TypeError} if the path is not a string.
+ * @throws {TypeError} if the object if not an object.
  * @return {promise} if the function doesn't fail, it returns a promise that
  *                   resolves to true.
  */
 async function saveJSONToFile(path, obj) {
     try {
         if(typeof(path) !== 'string') {
-            throw `${path} is not a valid path!`;
+            throw TypeError(`${path} is not a valid path!`);
         }
-        await fs.writeFile(path, JSON.stringify(obj, null, 4));
+        if(typeof(obj) !== 'object') {
+            throw TypeError(`${obj} is no a valid object!`);
+        }
+        await fs.writeJSON(path, obj, { spaces: '\t'});
         return true;
     } catch (error) {
         throw error;
