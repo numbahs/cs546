@@ -8,5 +8,9 @@
 	},
 	"keywords": [],
 	"author": "Albert Tang",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"mongodb": "^2.2.31",
+		"uuid": "^3.1.0"
+	}
 }
