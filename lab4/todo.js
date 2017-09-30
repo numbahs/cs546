@@ -56,7 +56,7 @@ async function completeTask(taskId) {
             title: tempItem.title,
             description: tempItem.description,
             completed: true,
-            completedAt: Date.now()
+            completedAt: new Date()
         });
         return await getTask(taskId);
     } catch (err) {
