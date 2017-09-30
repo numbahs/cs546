@@ -2,6 +2,14 @@ const uuidv4 = require('uuid/v4');
 const mongoCollections = require("./mongoCollections");
 const todoItems = mongoCollections.todoItems;
 
+/**
+ * @param {string} title the title of the task.
+ * @param {string} description the description of the task. 
+ * @throws {TypeError} if the title is not a string.
+ * @throws {TypeError} if the description is not a string.
+ * @return {promise} of the created task. Reject if the task failed to
+ *                   be made.
+ */
 async function createTask(title, description) {
     try {
         if(typeof(title) !== 'string') {
@@ -24,6 +32,10 @@ async function createTask(title, description) {
     }
 }
 
+/** 
+ * @return {promise} of an array of all the tasks in the collection. Reject if
+ *                   the tasks are failed to be retrieved. 
+ */
 async function getAllTasks() {
     try {
         let items = await todoItems();
@@ -33,6 +45,11 @@ async function getAllTasks() {
     }
 }
 
+/**
+ * @param {string} id the id of the task.
+ * @throws {TypeError} if the id is not a string.
+ * @return {promise} of the task. Reject if the item is not found. 
+ */
 async function getTask(id) {
     try {
         if(typeof(id) !== 'string') {
@@ -45,6 +62,12 @@ async function getTask(id) {
     }
 }
 
+
+/**
+ * @param {string} taskId the id of the task.
+ * @throws {TypeError} if the taskId is not a string.
+ * @return {promise} of the updated task. Reject if the item is not found. 
+ */
 async function completeTask(taskId) {
     try {
         if(typeof(taskId) !== 'string') {
@@ -64,13 +87,21 @@ async function completeTask(taskId) {
     }
 }
 
+
+/**
+ * @param {string} id the id of the task.
+ * @throws {TypeError} if the id is not a string.
+ * @return {promise} true if the item was successfully removed. Reject if the
+ *                   was not found.
+ */
 async function removeTask(id) {
     try {
         if(typeof(id) !== 'string') {
             throw TypeError(`${id} is not a valid id`);
         }
         let items = await todoItems();
-        return await items.deleteOne({_id : id});
+        await items.deleteOne({_id : id});
+        return true
     } catch (err) {
         throw err;
     }
