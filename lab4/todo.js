@@ -5,9 +5,9 @@ const todoItems = mongoCollections.todoItems;
 async function createTask(title, description) {
     try {
         if(typeof(title) !== 'string') {
-            throw typeError(`${title} is not a valid title!`);
+            throw TypeError(`${title} is not a valid title!`);
         } if(typeof(description) !== 'string') {
-            throw typeError(`${description} is not a valid description!`);
+            throw TypeError(`${description} is not a valid description!`);
         }
         let task = {
             _id: uuidv4(),
@@ -16,7 +16,8 @@ async function createTask(title, description) {
             completed: false,
             completedAt: null
         }
-        await todoItems.insertOne(task);
+        let items = await todoItems();
+        await items.insertOne(task);
         return task;
     } catch (err) {
         throw err;
@@ -25,7 +26,8 @@ async function createTask(title, description) {
 
 async function getAllTasks() {
     try {
-        return await todoItems.find().limit(todoItems.length);
+        let items = await todoItems();
+        return await items.find().limit(todoItems.length).toArray();
     } catch (err) {
         throw err;
     }
@@ -34,9 +36,10 @@ async function getAllTasks() {
 async function getTask(id) {
     try {
         if(typeof(id) !== 'string') {
-            throw typeError(`${id} is not a valid id!`);
+            throw TypeError(`${id} is not a valid id!`);
         }
-        return await todoItems.findOne({_id : id});
+        let items = await todoItems();
+        return await items.findOne({_id : id});
     } catch (err) {
         throw err;
     }
@@ -44,16 +47,18 @@ async function getTask(id) {
 
 async function completeTask(taskId) {
     try {
-        if(typeof(id) !== 'string') {
-            throw typeError(`${id} is not a valid id!`);
+        if(typeof(taskId) !== 'string') {
+            throw TypeError(`${taskId} is not a valid id!`);
         }
-        return await todoItems.updateOne({_id : id}, {
-            _id: id,
-            title: title,
-            description: description,
+        let items = await todoItems(), tempItem = await getTask(taskId);
+        await items.updateOne({_id : taskId}, {
+            _id: taskId,
+            title: tempItem.title,
+            description: tempItem.description,
             completed: true,
             completedAt: Date.now()
-        })
+        });
+        return await getTask(taskId);
     } catch (err) {
         throw err;
     }
@@ -62,9 +67,10 @@ async function completeTask(taskId) {
 async function removeTask(id) {
     try {
         if(typeof(id) !== 'string') {
-            throw typeError(`${id} is not a valid id`);
+            throw TypeError(`${id} is not a valid id`);
         }
-        return await todoItems.deleteOne(id);
+        let items = await todoItems();
+        return await items.deleteOne({_id : id});
     } catch (err) {
         throw err;
     }
