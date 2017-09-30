@@ -101,7 +101,7 @@ async function removeTask(id) {
         }
         let items = await todoItems();
         await items.deleteOne({_id : id});
-        return true
+        return true;
     } catch (err) {
         throw err;
     }
