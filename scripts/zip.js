@@ -6,5 +6,5 @@ if(lab.slice(0,3) !== 'lab'){
 }
 else {
     shell.cd(`./${lab}`)
-    shell.exec(`zip -r Albert_Tang-${lab}.zip . -x "*node_modules/" -x "node_modules/**" -x "*.DS_Store" -x "*.zip"`)
+    shell.exec(`zip -r Tang_Albert_CS546_WS.zip . -x "*node_modules/" -x "node_modules/**" -x "*.DS_Store" -x "*.zip"`)
 }

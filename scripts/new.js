@@ -7,6 +7,7 @@ const package = {
   "description": `CS-546 ${lab} Submission for Albert Tang`,
   "main": `${lab}.js`,
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
