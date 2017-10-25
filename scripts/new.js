@@ -33,6 +33,6 @@ else{
     shell.mkdir(lab)
     shell.cd(lab)
     shell.echo(JSON.stringify(package, null, '\t')).to('package.json')
-    shell.echo(heading).to(`${lab}.js`)
+    shell.echo(heading).to(`app.js`)
     shell.echo(`# CS-546 ${lab} \n### Albert Tang`).to(`README.md`)
 }

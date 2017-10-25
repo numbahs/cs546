@@ -1,0 +1,18 @@
+{
+	"name": "cs-546-lab7",
+	"version": "1.0.0",
+	"description": "CS-546 lab7 Submission for Albert Tang",
+	"main": "lab7.js",
+	"scripts": {
+		"start": "node app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Albert Tang",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.16.2",
+		"mongodb": "^2.2.33",
+		"uuid": "^3.1.0"
+	}
+}
