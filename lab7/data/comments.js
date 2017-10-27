@@ -1,20 +1,20 @@
 const mongoCollections = require("../config/mongoCollections");
 const lab7recipes = mongoCollections.lab7recipes;
 const uuid = require('node-uuid');
-const recipes = require('./recipes');
+const recipesData = require('./recipes');
 
 let exportedMethods = {
-    getAllCommentsInRecipe = async (recipeId) => {
+    getAllCommentsInRecipe : async (recipeId) => {
         try {
             if(typeof(recipeId) !== 'string') {
                 throw TypeError(`${recipeId} is not a recipeId!`);
             } 
-            let recipes = await lab7recipes(), recipe = await recipes.find({_id: recipeId}),
-            { comments } = recipe, ret = {};
-            comments.foreach((comment) => {
+            let recipes = await lab7recipes(), recipe = await recipes.findOne({_id: recipeId}),
+            ret = [];
+            recipe.comments.forEach((comment) => {
                 ret.push({
                     _id: comment._id,
-                    recipeId: recipeId,
+                    recipeId: recipe._id,
                     recipeTitle: recipe.title,
                     poster: comment.poster,
                     comment: comment.comment
@@ -26,75 +26,89 @@ let exportedMethods = {
         }
     },
     
-    getCommentByCommentID = async (commentId) => {
+    getCommentByCommentID : async (commentId) => {
         try {
             if(typeof(commentId) !== 'string') {
                 throw TypeError(`${commentId} is not a commentId!`);
             }
-            let recipes = await lab7recipes(), recipe = await recipes.find({comment : {_id : commentId}}),
-            comment = recipe.comment, ret = {
-                _id: comment._id,
-                recipeId: recipe._id,
-                recipeTitle: recipe.title,
-                poster: comment.poster,
-                comment: comment.comment
-            };
+            let recipes = await lab7recipes(), recipe = await recipes.findOne({"comments._id" : commentId});
+            let match = {};
+            recipe.comments.forEach((comment) => {
+                if(comment._id === commentId) {
+                    return (match = {
+                        _id: comment._id,
+                        recipeId: recipe._id,
+                        recipeTitle: recipe.title,
+                        poster: comment.poster,
+                        comment: comment.comment
+                    });
+                };
+            });
+            return match;
         } catch (err) {
             throw err;
         }
     },
 
-    addCommentToRecipe = async (recipeId, comment, poster) => {
+    addCommentToRecipe : async (recipeId, comment) => {
         try {
+            console.log("hello");
             if(typeof(recipeId) !== 'string') {
                 throw TypeError(`${recipeId} is not a recipeId!`);
-            } else if(typeof(poster) !== 'string') {
+            } 
+            if(typeof(comment.poster) !== 'string') {
                 throw TypeError(`${poster} is not a poster name!`);
             }
-            let recipes = await lab7recipes(), recipe = await recipes.find({_id: recipeId}),
+            let recipes = await lab7recipes(), recipe = await recipes.findOne({_id: recipeId}),
             ret = {
                 _id : uuid.v4(),
-                poster: poster,
-                comment: comment
+                poster: comment.poster,
+                comment: comment.comment
             }
             recipe.comments.push(ret);
+            await recipes.findOneAndUpdate({_id : recipeId}, { $set : recipe });
             return ret;
         } catch (err) {
             throw err;
         }   
     },
 
-    updateCommentInRecipe = async (recipeId, commentId, comment, poster) => {
+    updateCommentInRecipe : async (recipeId, commentId, updatedComment) => {
         try {
             if(typeof(recipeId) !== 'string') {
                 throw TypeError(`${recipeId} is not a recipeId!`);
             } else if(typeof(commentId) !== 'string') {
                 throw TypeError(`${commentId} is not a commentId!`);
-            } else if(typeof(poster) !== 'string') {
-                throw TypeError(`${poster} is not a poster name!`);
             } 
-            let recipes = await lab7recipes(), 
-            recipe = await recipes.find({_id: recipeId}),
-            temp = await recipe.find({_id : commentId}), 
-            ret = {
-                _id : commentId,
-                poster : poster,
-                comment : comment
+            let recipes = await lab7recipes();
+            setSet = {};
+            if(updatedComment.comment) {
+                if(typeof(updatedComment.comment) !== 'string') {
+                    throw TypeError(`${updatedComment.comment} is not a valid comment!`);
+                }
+                setSet["comments.$.comment"] = updatedComment.comment;
             }
-            await recipe.updateOne({_id : commentId}, ret);
-            return ret;
+            if(updatedComment.poster) {
+                if(typeof(updatedComment.poster) !== 'string') {
+                    throw TypeError(`${updatedComment.poster} is not a valid poster!`);
+                }
+                setSet["comments.$.poster"] = updatedComment.poster;
+            }
+            await recipes.findOneAndUpdate({_id : recipeId, "comments._id" : commentId}, {$set : setSet});
+            return await recipes.findOne({_id : recipeId, "comments._id" : commentId});
         } catch (err) {
             throw err;
         }
     },
 
-    deleteCommentByID = async (commentId) => {
+    deleteCommentByID : async (commentId) => {
         try {
             if(typeof(commentId) !== 'string') {
                 throw TypeError(`${commentId} is not a valid commentId!`);
             }
-            let recipes = await lab7recipes(), recipe = await recipes.find({comment : {_id : commentId}});
-            return await recipe.deleteOne({comment : {_id : commentId}});
+            let recipes = await lab7recipes();
+            return await recipes.findOneAndUpdate({"comments._id" : commentId}, {$pull : 
+                {'comments' : {_id : commentId}}});
         } catch (err) {
             throw err;
         }

@@ -6,8 +6,13 @@
  */
 
 const express = require("express");
-let constructorMethod = require("./routes");
-let app = express();
+const morgan = require('morgan');
+const constructorMethod = require("./routes");
+const bodyparser = require('body-parser');
+const app = express();
+
+app.use(bodyparser.json());
+app.use(morgan('dev'));
 
 constructorMethod(app);
 
