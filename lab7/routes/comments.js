@@ -9,6 +9,7 @@ router.get("/recipe/:recipeId", async (req, res) => {
         res.json(commentList);
     } catch (err) {
         res.status(400).json(err);
+        res.status(404).json(err);
     }
 });
 
@@ -18,6 +19,7 @@ router.get("/:commentId", async (req, res) => {
         res.json(comment);
     } catch (err) {
         res.status(400).json(err);
+        res.status(404).json(err);
     }
 });
 
@@ -27,6 +29,7 @@ router.post("/:recipeId", async (req, res) => {
         res.json(comment);
     } catch (err) {
         res.status(400).json(err);
+        res.status(404).json(err);
     }
 });
 
@@ -36,6 +39,7 @@ router.put("/:recipeId/:commentId", async (req, res) => {
         res.json(comment);
     } catch (err) {
         res.status(400).json(err);
+        res.status(404).json(err);
     }
 });
 
@@ -45,6 +49,7 @@ router.delete("/:id", async (req, res) => {
         res.status(200).json({message : "delete"});
     } catch (err) {
         res.status(400).json(err);
+        res.status(404).json(err);
     }
 });
 
