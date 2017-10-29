@@ -31,8 +31,8 @@ let exportedMethods = {
             if(typeof(commentId) !== 'string') {
                 throw TypeError(`${commentId} is not a commentId!`);
             }
-            let recipes = await lab7recipes(), recipe = await recipes.findOne({"comments._id" : commentId});
-            let match = {};
+            let recipes = await lab7recipes(), recipe = await recipes.findOne({"comments._id" : commentId}),
+            match = {};
             recipe.comments.forEach((comment) => {
                 if(comment._id === commentId) {
                     return (match = {
@@ -52,21 +52,19 @@ let exportedMethods = {
 
     addCommentToRecipe : async (recipeId, comment) => {
         try {
-            console.log("hello");
             if(typeof(recipeId) !== 'string') {
                 throw TypeError(`${recipeId} is not a recipeId!`);
             } 
             if(typeof(comment.poster) !== 'string') {
                 throw TypeError(`${poster} is not a poster name!`);
             }
-            let recipes = await lab7recipes(), recipe = await recipes.findOne({_id: recipeId}),
+            let recipes = await lab7recipes(),
             ret = {
                 _id : uuid.v4(),
                 poster: comment.poster,
                 comment: comment.comment
             }
-            recipe.comments.push(ret);
-            await recipes.findOneAndUpdate({_id : recipeId}, { $set : recipe });
+            await recipes.findOneAndUpdate({_id : recipeId}, { $addToSet : {"comments" : ret }});
             return ret;
         } catch (err) {
             throw err;

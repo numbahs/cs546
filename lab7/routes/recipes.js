@@ -8,8 +8,7 @@ router.get("/", async (req, res) => {
         let recipeList = await recipes.getAllRecipes();
         res.json(recipeList);
     } catch (err) {
-        res.status(400).json(err);
-        res.status(404).json(err);
+        res.status(400).json(err);   
     }
 });
 
@@ -19,7 +18,6 @@ router.get("/:id", async (req, res) => {
         res.json(recipe);
     } catch (err) {
         res.status(400).json(err);
-        res.status(404).json(err);
     }
 });
 
@@ -29,7 +27,6 @@ router.post("/", async (req, res) => {
         res.json(recipe);
     } catch (err) {
         res.status(400).json(err);
-        res.status(404).json(err);
     }
 });
 
@@ -38,8 +35,7 @@ router.put("/:id", async (req, res) => {
         let updatedRecipe = await recipes.updateRecipe(req.params.id, req.body);
         res.json(updatedRecipe);
     } catch (err) {
-        res.status(400).json(err);
-        res.status(404).json(err);
+        res.status(400).json(err);   
     }
 });
 
@@ -49,7 +45,6 @@ router.delete("/:id", async (req, res) => {
         res.status(200).json({message : "item deleted"});
     } catch (err) {
         res.status(400).json(err);
-        res.status(404).json(err);
     }
 });
 
