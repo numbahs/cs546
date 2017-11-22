@@ -1,7 +1,147 @@
 * {
-    border: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+main {
+    margin: 20px auto;
+    width: 800px;
+}
+
+.container {
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+    main {
+        margin: 20px 20px;
+        max-width: 800px;
+        width: auto;
+    }
 }
 
 header {
-    font-size: 200%;
+    font-size: 30px;
+    background-color: #175900;
+    color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    position: sticky;
+    top: 0;
+}
+
+body {
+    background-color: #eee;
+}
+
+footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    color: #767676;
+    height: 10vh;
+}
+
+h1 {
+    font-size: 150%;
+    text-align: center;
+}
+
+.submission {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+}
+
+textarea {
+    border: none;
+    border-bottom: 2px solid #888;
+    transition: all 0.5s;
+}
+
+textarea:focus {
+    outline: none;
+    border-bottom: 2px solid #175900;
+}
+
+button {
+    width: 200px;
+    margin: 4px auto;
+    align-self: stretch;
+    border: none;
+    background-color: #175900;
+    color: white;
+    padding: 4px;
+    transition: all 0.5s;
+}
+
+button:focus {
+    outline: none;
+    background-color: #002e00;
+}
+
+#submit {
+    text-align: center;
+}
+
+
+
+
+.checkedList {
+    list-style: none;
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+}
+
+.checkedList li {
+    padding: 4px 20px;
+    border-bottom: 2px solid;
+    margin: 20px 0;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.checkedList li:hover::after {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #999;
+}
+
+.not-palindrome {
+    color: #EE0000;
+    border-bottom-color: #EE0000;
+}
+
+.not-palindrome::after {
+    content: '✗';
+}
+
+.not-palindrome:hover::after {
+    content: 'Not a Palindrome';
+}
+
+.is-palindrome::after {
+    content: '✓';
+}
+
+.is-palindrome:hover::after {
+    content: 'Is a Palindrome';
+}
+
+.is-palindrome {
+    color: #0000FF;
+    border-bottom-color: #0000FF;
 }

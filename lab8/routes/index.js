@@ -1,13 +1,9 @@
-const palindromeRoutes = require("./palindrome");
-const aboutRoutes = require("./about");
+var palindromeRoutes = require('./palindrome');
+var aboutRoutes = require('./about');
 
-let constructorMethod = (app) => {
-    app.use("/", palindromeRoutes);
-    app.use("/about", aboutRoutes);
-
-    app.use("*", (res, req) => {
-        res.redirect("/about");
-    })
+var constructorMethod = function constructorMethod(app) {
+    app.use('/', palindromeRoutes);
+    app.use('*', aboutRoutes);
 };
 
 module.exports = constructorMethod;

@@ -1,5 +1,9 @@
-<form onsubmit="submitText(); return false;">
-    <textarea placeholder="Place palindrome here"></textarea>
-    <button>Submit!</button>
-</form>
-<ul id="checkedList"></ul>
+<div class='container'>
+    <form onsubmit='return submitText();' class='submission' id='submission'>
+        <label for="output">Enter Palindrome</label>
+        <textarea placeholder='Place palindrome here' class='submission' id='output'></textarea> 
+        <button>Submit!</button>
+    </form>
+    <ul class='checkedList' id='checkedList'>
+    </ul>
+</div>

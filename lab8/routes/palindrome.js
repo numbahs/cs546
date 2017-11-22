@@ -1,7 +1,7 @@
-const router = require("express").Router();
+var router = require('express').Router();
 
-router.get("/", (req, res) => {
-    res.render("palindromes");
+router.get('/', function (req, res) {
+    res.render('palindromes');
 });
 
 module.exports = router;
