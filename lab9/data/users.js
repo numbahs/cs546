@@ -10,7 +10,7 @@ created by British author Sir Arthur Conan Doyle. Known as a \"consulting detect
 in the stories, Holmes is known for a proficiency with observation, forensic science, \
 and logical reasoning that borders on the fantastic, which he employs when investigating \
 cases for a wide variety of clients, including Scotland Yard.",
-        hashedPassword: "$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD"
+        hashedPassword: "$2a$16$7JKSiEmoP3GNDSalogqgPu0sUbwder7CAN/5wnvCWe6xCKAKwlTD."
     }, 
     { 
         _id: "723445325124124", 
@@ -35,9 +35,9 @@ Harry Potter, and his friends Hermione Granger and Ron Weasley, all of whom are 
 students at Hogwarts School of Witchcraft and Wizardry . The main story arc \
 concerns Harry's struggle against Lord Voldemort, a dark wizard who intends \
 to become immortal, overthrow the wizard governing body known as the Ministry of\
- Magic, and subjugate all wizards and Muggles.",
+Magic, and subjugate all wizards and Muggles.",
         hashedPassword: "$2a$16$4o0WWtrq.ZefEmEbijNCGukCezqWTqz1VWlPm/xnaLM8d3WlS5pnK"
     }
-  ]
+]
 
 module.exports = users;
