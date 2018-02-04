@@ -9,6 +9,8 @@ const express = require("express");
 let constructorMethod = require("./routes");
 let app = express();
 
+app.use(express.static(__dirname + '/public'));
+
 constructorMethod(app);
 
 app.listen(3000, () => {
